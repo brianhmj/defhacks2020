@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<title>Massachusetts Map</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src='https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.css' rel='stylesheet' />
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+
+
+<body>
+    <div id='map' style='width: 100vw; height: 100vh; margin: auto'></div>
+    <script>
+        mapboxgl.accessToken = 'pk.eyJ1IjoiYnJpYW5obWoiLCJhIjoiY2ticGhwMjZoMG05djMwb2ZzMTJ0Yzc3bCJ9.aOCEkdPgiQDclu9J8VvsKQ';
+        var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v11',
+        center: [-71.797911, 42.295891],
+        zoom: 7
+        });
+
+        map.on('load', function() {
+            map.addSource('covid', {
+            type: 'vector',
+            url: 'file:///Users/brianhjung/Documents/COVID/DefHacks/output.json'
+            });
+            map.addLayer({
+            'id': 'population',
+            'type': 'circle',
+            'source': 'covid',
+            'source-layer': 'count',
+            'paint': {
+
+                'circle-radius': {
+                'base': 1.75,
+                'stops': [
+                [12, 2],
+                [22, 180]
+                ]
+                },
+                'circle-color': [
+                'match',
+                ['get', 'ethnicity'],
+                'White',
+                '#fbb03b',
+                'Black',
+                '#223b53',
+                'Hispanic',
+                '#e55e5e',
+                'Asian',
+                '#3bb2d0',
+                /* other */ '#ccc'
+                ]
+                }
+            })
+        });
+
+    </script>
+
+</body>
+</html>
