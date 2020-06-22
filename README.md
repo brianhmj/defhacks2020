@@ -25,12 +25,19 @@ Once you are in the correct directory, run install for the used modules. I was u
 to upload the modules and libaries so run these code one at time. 
 
 npm install request-promise
+
 npm install cheerio
+
 npm install https
+
 npm install csv-parser
+
 npm install objects-to-csv
+
 npm install geojson
+
 npm install adm-zip
+
 npm install request
 
 
