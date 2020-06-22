@@ -3,6 +3,7 @@ const fs = require('fs');
 const ObjectsToCsv = require('objects-to-csv');
 const GeoJSON = require('geojson');
 
+function module3(){
 var covidData = []
 var todayCovidData =[]
 var dataa 
@@ -57,3 +58,5 @@ fs.createReadStream('./County.csv')
             return console.log(err);
         }});
   });
+}
+module.exports = module3;
